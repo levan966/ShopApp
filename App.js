@@ -2,24 +2,24 @@ import { StyleSheet, View, Text } from "react-native";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
+import { NavigationContainer } from "@react-navigation/native";
+import ProductsStack from "./navigaiton/ShopNavigator";
+import { composeWithDevTools } from "redux-devtools-extension";
+import cartReducer from "./store/reducers/cart";
 
 const rootReducer = combineReducers({
   products: productsReducer,
+  cart: cartReducer,
 });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <View>
-        <Text>asdfasf</Text>
-        <Text>asdfasf</Text>
-        <Text>asdfassafasfaslfg lasgfla sgbsf</Text>
-        <Text>asdfasf</Text>
-        <Text>asdfasf</Text>
-        <Text>asdfasf</Text>
-      </View>
-    </Provider>
+    <NavigationContainer>
+      <Provider store={store}>
+        <ProductsStack />
+      </Provider>
+    </NavigationContainer>
   );
 }
 
