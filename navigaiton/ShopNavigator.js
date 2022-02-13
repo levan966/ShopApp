@@ -35,7 +35,7 @@ export const Drawer = () => {
       />
       <DrawerNavigator.Screen
         name="drawe1"
-        component={ProductsStack}
+        component={OrdersScreen}
         options={{ title: "Orders" }}
       />
     </DrawerNavigator.Navigator>

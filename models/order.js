@@ -1,9 +1,18 @@
 class Order {
-  constructor(id, itmes, totalAmount, date) {
+  constructor(id, items, totalAmount, date) {
     this.id = id;
-    this.itmes = itmes;
+    this.items = items;
     this.totalAmount = totalAmount;
     this.date = date;
+  }
+  get readableDate() {
+    return this.date.toLocaleDateString("en-EN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   }
 }
 
