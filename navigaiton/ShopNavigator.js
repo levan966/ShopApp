@@ -6,6 +6,8 @@ import CartScreen from "../screens/shop/CartScreen";
 import OrdersScreen from "../screens/shop/OrdersScreen";
 import ProductDetailScreens from "../screens/shop/ProductDetailScreens";
 import ProductsOverviewsScreen from "../screens/shop/ProductsOverViewScreen";
+import UserPoductsScreen from "../screens/user/UserPoductsScreen";
+import EditProductScreen from "../screens/user/EditProductScreen";
 import { Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -20,7 +22,7 @@ export const Drawer = () => {
     // }}
     >
       <DrawerNavigator.Screen
-        name="ordesrs"
+        name="prodDrawer"
         component={ProductsStack}
         options={{
           title: "Products",
@@ -34,9 +36,14 @@ export const Drawer = () => {
         }}
       />
       <DrawerNavigator.Screen
-        name="drawe1"
+        name="orders"
         component={OrdersScreen}
         options={{ title: "Orders" }}
+      />
+      <DrawerNavigator.Screen
+        name="userPoducts"
+        component={UserPoductsScreen}
+        options={{ title: "Admin" }}
       />
     </DrawerNavigator.Navigator>
   );
@@ -69,6 +76,11 @@ export const ProductsStack = () => {
         name="OrdersScreen"
         component={OrdersScreen}
         options={{ title: "Orders" }}
+      />
+      <ProductsNavigator.Screen
+        name="editProductScreen"
+        component={EditProductScreen}
+        options={{ title: "Edit" }}
       />
     </ProductsNavigator.Navigator>
   );
