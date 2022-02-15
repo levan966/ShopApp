@@ -17,34 +17,28 @@ const DrawerNavigator = createDrawerNavigator();
 
 export const Drawer = () => {
   return (
-    <DrawerNavigator.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <DrawerNavigator.Navigator>
       <DrawerNavigator.Screen
         name="prodDrawer"
         component={ProductsStack}
         options={{
           title: "Products",
-          // drawerIcon: () => (
-          // <Ionicons
-          //   name={Platform.OS === "android" ? "md-list" : "ios-list"}
-          //   size={size}
-          //   color={focused ? "#7cc" : "#ccc"}
-          // />
-          // ),
+          headerShown: false,
         }}
       />
       <DrawerNavigator.Screen
         name="orders"
         component={OrdersScreen}
-        options={{ title: "Orders" }}
+        options={{
+          title: "Orders",
+        }}
       />
       <DrawerNavigator.Screen
         name="userPoducts"
         component={UserPoductsScreen}
-        options={{ title: "Admin" }}
+        options={{
+          title: "Admin",
+        }}
       />
     </DrawerNavigator.Navigator>
   );

@@ -13,7 +13,6 @@ const ProductsOverviewsScreen = (props) => {
   const selectedItemHandler = (id) => {
     props.navigation.navigate("productDetails", {
       productId: id,
-      // productTitle: itemData.item.title,
     });
   };
 
@@ -37,9 +36,6 @@ const ProductsOverviewsScreen = (props) => {
           onSelect={() => {
             selectedItemHandler(itemData.item.id);
           }}
-          // onAddToCart={() => {
-          //   dispatch(cartActions.addToCart(itemData.item));
-          // }}
         >
           <Button
             title="View details"
