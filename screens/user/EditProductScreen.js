@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
   TextInput,
+  Button,
 } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -29,9 +30,15 @@ const EditProductScreen = (props) => {
 
   useEffect(() => {
     props.navigation.setOptions({
-      headerTitle: prodId ? "Edit" : "Add",
+      headerTitle: prodId ? "Edit" : "Add Product",
+      headerRight: () => <Button onPress={() => submitHandler()} title="add" />,
     });
-  }, [props.navigation]);
+  });
+
+  const submitHandler = useCallback(() => {
+    console.log("submitting!");
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.form}>

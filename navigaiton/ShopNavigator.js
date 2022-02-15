@@ -10,6 +10,7 @@ import UserPoductsScreen from "../screens/user/UserPoductsScreen";
 import EditProductScreen from "../screens/user/EditProductScreen";
 import { Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const ProductsNavigator = createNativeStackNavigator();
 const DrawerNavigator = createDrawerNavigator();
@@ -17,9 +18,9 @@ const DrawerNavigator = createDrawerNavigator();
 export const Drawer = () => {
   return (
     <DrawerNavigator.Navigator
-    // screenOptions={{
-    //   headerShown: false,
-    // }}
+      screenOptions={{
+        headerShown: false,
+      }}
     >
       <DrawerNavigator.Screen
         name="prodDrawer"
@@ -50,6 +51,8 @@ export const Drawer = () => {
 };
 
 export const ProductsStack = () => {
+  const navigation = useNavigation();
+
   return (
     <ProductsNavigator.Navigator>
       <ProductsNavigator.Screen
@@ -57,9 +60,13 @@ export const ProductsStack = () => {
         component={ProductsOverviewsScreen}
         options={{
           title: "Products",
-          // headerLeft: () => (
-          //   <Button onPress={() => "asdfsa"} title="drawer" color="black" />
-          // ),
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.openDrawer()}
+              title="drawer"
+              color="black"
+            />
+          ),
         }}
       />
       <ProductsNavigator.Screen
