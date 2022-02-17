@@ -1,19 +1,18 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { createStackNavigator } from "@react-navigation/stack";
+import { Button, Image } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import CartScreen from "../screens/shop/CartScreen";
 import OrdersScreen from "../screens/shop/OrdersScreen";
 import ProductDetailScreens from "../screens/shop/ProductDetailScreens";
 import ProductsOverviewsScreen from "../screens/shop/ProductsOverViewScreen";
 import UserPoductsScreen from "../screens/user/UserPoductsScreen";
 import EditProductScreen from "../screens/user/EditProductScreen";
-import { Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const ProductsNavigator = createNativeStackNavigator();
 const DrawerNavigator = createDrawerNavigator();
+const ProductsNavigator = createNativeStackNavigator();
+const AdminNavigator = createNativeStackNavigator();
 
 export const Drawer = () => {
   return (
@@ -35,18 +34,18 @@ export const Drawer = () => {
       />
       <DrawerNavigator.Screen
         name="userPoducts"
-        component={UserPoductsScreen}
+        component={AdminStack}
         options={{
           title: "Admin",
+          headerShown: false,
         }}
       />
     </DrawerNavigator.Navigator>
   );
 };
 
-export const ProductsStack = () => {
+const ProductsStack = () => {
   const navigation = useNavigation();
-
   return (
     <ProductsNavigator.Navigator>
       <ProductsNavigator.Screen
@@ -66,7 +65,10 @@ export const ProductsStack = () => {
       <ProductsNavigator.Screen
         name="productDetails"
         component={ProductDetailScreens}
-        options={{ title: "Orders" }}
+        options={{
+          title: "Orders",
+          headerBackTitleVisible: false,
+        }}
       />
       <ProductsNavigator.Screen
         name="CartScreen"
@@ -78,11 +80,36 @@ export const ProductsStack = () => {
         component={OrdersScreen}
         options={{ title: "Orders" }}
       />
-      <ProductsNavigator.Screen
+    </ProductsNavigator.Navigator>
+  );
+};
+
+const AdminStack = () => {
+  const navigation = useNavigation();
+  return (
+    <AdminNavigator.Navigator>
+      <AdminNavigator.Screen
+        name="userProdScreen"
+        component={UserPoductsScreen}
+        options={{
+          title: "Edit",
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.openDrawer()}
+              title="drawer"
+              color="black"
+            />
+          ),
+        }}
+      />
+      <AdminNavigator.Screen
         name="editProductScreen"
         component={EditProductScreen}
-        options={{ title: "Edit" }}
+        options={{
+          title: "Edit",
+          headerBackTitleVisible: false,
+        }}
       />
-    </ProductsNavigator.Navigator>
+    </AdminNavigator.Navigator>
   );
 };

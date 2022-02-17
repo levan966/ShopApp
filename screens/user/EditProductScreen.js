@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as ProductsActions from "../../store/actions/products";
 
 const EditProductScreen = (props) => {
+  console.log(props);
   let prodId;
   if (props.route.params) {
     prodId = props.route.params.productId;

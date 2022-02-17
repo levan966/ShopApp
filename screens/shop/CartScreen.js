@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import cart from "../../store/reducers/cart";
 import CartItem from "../../components/shop/CartItem";
 import * as cartActions from "../../store/actions/cart";
 import * as ordersActions from "../../store/actions/orders";

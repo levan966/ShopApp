@@ -28,7 +28,7 @@ const UserPoductsScreen = (props) => {
 
   useEffect(() => {
     props.navigation.setOptions({
-      headerTitle: "Your products",
+      headerTitle: "Your Products",
       headerRight: () => (
         <Button
           onPress={() => {

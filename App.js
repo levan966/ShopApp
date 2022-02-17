@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
 import { NavigationContainer } from "@react-navigation/native";
 import { Drawer } from "./navigaiton/ShopNavigator";
-import { ProductsStack } from "./navigaiton/ShopNavigator";
 import { composeWithDevTools } from "redux-devtools-extension";
 import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
