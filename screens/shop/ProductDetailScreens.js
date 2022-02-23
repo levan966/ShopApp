@@ -15,8 +15,8 @@ const ProductDetailScreens = (props) => {
   const selectedProduct = useSelector((state) =>
     state.products.avaliableProducts.find((prod) => prod.id === productId)
   );
+
   useEffect(() => {
-    console.log(selectedProduct);
     props.navigation.setOptions({
       title: selectedProduct.title,
     });

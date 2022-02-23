@@ -1,12 +1,21 @@
-import { useEffect } from "react";
-import { FlatList, StyleSheet, View, Button } from "react-native";
+import { useEffect, useState, useCallback } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Button,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import ProductItem from "../../components/shop/ProductItem";
 import HeaderButton from "../../components/UI/HeaderButton";
-
+import * as productsActions from "../../store/actions/products";
 import * as cartActions from "../../store/actions/cart";
 
 const ProductsOverviewsScreen = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const products = useSelector((state) => state.products.avaliableProducts);
   const dispatch = useDispatch();
 
@@ -23,6 +32,43 @@ const ProductsOverviewsScreen = (props) => {
       ),
     });
   }, [props.navigation]);
+
+  const loadProducts = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(productsActions.fetchProducts());
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  }, [dispatch, setIsLoading, setError]);
+
+  useEffect(() => {
+    loadProducts();
+  }, [dispatch, loadProducts]);
+
+  if (error) {
+    <View style={styles.centered}>
+      <Text>An error occurred!</Text>
+      <Button title="Try again" onPress={loadProducts} />
+    </View>;
+  }
+
+  if (isLoading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+  if (!isLoading && products.length === 0) {
+    return (
+      <View style={styles.centered}>
+        <Text>No products found</Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList
@@ -56,11 +102,11 @@ const ProductsOverviewsScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  centered: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 100,
   },
 });
 

@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 
 const CartItem = (props) => {
-  console.log(props);
   return (
     <View style={styles.cartItem}>
       <View style={styles.itemData}>

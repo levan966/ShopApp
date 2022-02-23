@@ -3,9 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import CartItem from "./CartItem";
 import Card from "../UI/Card";
 const OrderItem = (props) => {
-  console.log(props.items);
   const [showDetails, setShowDetails] = useState(false);
-  console.log(showDetails);
   return (
     <Card style={styles.orderItem}>
       <View style={styles.summary}>
